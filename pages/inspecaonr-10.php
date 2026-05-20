@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <title>CheckPGR - Inspeção NR-10</title>
+  </head>
+  <body class="flex flex-col min-h-screen bg-slate-50" style="background-color: #f8fafc; background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); background-size: 16px 16px;">
+    
+    <header class="w-full bg-white shadow-md border-b border-slate-100 sticky top-0 z-50">
+      <div class="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="./dashboard.php" class="text-slate-400 hover:text-slate-600 transition-colors mr-1">
+            <i class="bi bi-arrow-left text-xl"></i>
+          </a>
+          <div>
+            <h1 class="text-base font-bold text-slate-800">Formulário de Inspeção NR-10</h1>
+            <p class="text-xs text-slate-400">Inspeção de Serviços em instalações elétricas energizadas</p>
+          </div>
+        </div>
+        
+        <span class="bg-amber-50 text-amber-600 font-bold px-3 py-1 rounded-lg text-xs">Setor Ativo</span>
+      </div>
+    </header>
+
+    <div class="flex-1 w-full flex justify-center py-8">
+      <div class="w-full max-w-[1200px] px-6 space-y-6">
+        
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Progresso da Inspeção</span>
+            <span class="text-xs font-bold text-blue-600" id="progress-text">0% Concluído</span>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-2">
+            <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <form action="./relatorio.php" class="space-y-6">
+          
+          <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="bg-slate-100 text-slate-700 font-mono text-xs w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5">01</span>
+              <p class="text-sm font-medium text-slate-700 leading-relaxed">
+                Item de verificação padrão para fins de prototipagem visual da interface.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium text-slate-600 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50/50 has-[:checked]:text-emerald-700">
+                <input type="radio" name="p1" value="conforme" class="hidden item-check" />
+                <i class="bi bi-check-circle"></i> Conforme
+              </label>
+              <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium text-slate-600 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50/50 has-[:checked]:text-rose-700">
+                <input type="radio" name="p1" value="nao-conforme" class="hidden item-check" />
+                <i class="bi bi-x-circle"></i> Não Conforme
+              </label>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 space-y-4">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
+                <textarea 
+                  name="obs_p1"
+                  rows="2" 
+                  placeholder="Descreva detalhes caso encontre irregularidades..." 
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+                ></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
+                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group">
+                  
+                  <input 
+                    type="file" 
+                    name="foto_p1" 
+                    accept="image/*" 
+                    capture="environment"
+                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input"
+                  />
+                  
+                  <div class="space-y-1 group-upload-placeholder">
+                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl">
+                      <i class="bi bi-camera"></i>
+                    </div>
+                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
+                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
+                  </div>
+
+                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 group-upload-preview">
+                    <div class="flex items-center gap-3">
+                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
+                      <div class="text-left">
+                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
+                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
+                      </div>
+                    </div>
+                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="bg-slate-100 text-slate-700 font-mono text-xs w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5">02</span>
+              <p class="text-sm font-medium text-slate-700 leading-relaxed">
+                Item de verificação padrão para fins de prototipagem visual da interface.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium text-slate-600 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50/50 has-[:checked]:text-emerald-700">
+                <input type="radio" name="p2" value="conforme" class="hidden item-check" />
+                <i class="bi bi-check-circle"></i> Conforme
+              </label>
+              <label class="flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium text-slate-600 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50/50 has-[:checked]:text-rose-700">
+                <input type="radio" name="p2" value="nao-conforme" class="hidden item-check" />
+                <i class="bi bi-x-circle"></i> Não Conforme
+              </label>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 space-y-4">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
+                <textarea 
+                  name="obs_p2"
+                  rows="2" 
+                  placeholder="Descreva detalhes caso encontre irregularidades..." 
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
+                ></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
+                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group">
+                  <input 
+                    type="file" 
+                    name="foto_p2" 
+                    accept="image/*" 
+                    capture="environment"
+                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input"
+                  />
+                  <div class="space-y-1 group-upload-placeholder">
+                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl">
+                      <i class="bi bi-camera"></i>
+                    </div>
+                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
+                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
+                  </div>
+                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 group-upload-preview">
+                    <div class="flex items-center gap-3">
+                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
+                      <div class="text-left">
+                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
+                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
+                      </div>
+                    </div>
+                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4 pt-2">
+            <a href="./dashboard.php" class="w-1/3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-500 font-medium rounded-xl py-3 text-sm transition-colors text-center shadow-xs">
+              Cancelar
+            </a>
+            <button type="submit" class="w-2/3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl py-3 text-sm transition-colors shadow-sm shadow-blue-100 cursor-pointer">
+              Salvar e Gerar Relatório
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <?php include './footer.php'; ?>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
