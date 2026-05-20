@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <form action="./relatorio.php" class="space-y-6">
+        <form action="./relatorio.php" method="POST" enctype="multipart/form-data" class="space-y-6">
           
           <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
             <div class="flex items-start gap-3">
@@ -76,7 +76,7 @@
 
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group">
+                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
                   
                   <input 
                     type="file" 
@@ -94,7 +94,7 @@
                     <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
                   </div>
 
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 group-upload-preview">
+                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
                     <div class="flex items-center gap-3">
                       <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
                       <div class="text-left">
@@ -102,7 +102,7 @@
                         <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
                       </div>
                     </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img">
+                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
@@ -134,17 +134,19 @@
             <div class="pt-4 border-t border-slate-100 space-y-4">
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
-                <textarea 
-                  name="obs_p2"
-                  rows="2" 
-                  placeholder="Descreva detalhes caso encontre irregularidades..." 
-                  class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
-                ></textarea>
+                  <textarea 
+                    name="obs_p1"
+                    rows="2" 
+                    autocorrect="off"
+                    autocapitalize="sentences"
+                    spellcheck="false"
+                    placeholder="Descreva detalhes caso encontre irregularidades..." 
+                    class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
+                  ></textarea>
               </div>
-
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group">
+                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
                   <input 
                     type="file" 
                     name="foto_p2" 
@@ -159,7 +161,7 @@
                     <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
                     <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
                   </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 group-upload-preview">
+                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
                     <div class="flex items-center gap-3">
                       <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
                       <div class="text-left">
@@ -167,7 +169,7 @@
                         <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
                       </div>
                     </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img">
+                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
@@ -190,6 +192,6 @@
       </div>
     </div>
     <?php include './footer.php'; ?>
-    <script src="./js/main.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
