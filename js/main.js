@@ -6,14 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const radios = document.querySelectorAll('.item-check');
   const progressBar = document.getElementById('progress-bar');
   const progressText = document.getElementById('progress-text');
-  const totalQuestions = 2;
+  const questionNames = Array.from(new Set(Array.from(radios).map(radio => radio.name).filter(Boolean)));
+  const totalQuestions = questionNames.length;
 
-  if (radios.length > 0 && progressBar && progressText) {
+  if (radios.length > 0 && progressBar && progressText && totalQuestions > 0) {
+    // Inicializa o progresso com base no que já estiver marcado
+    const initChecked = document.querySelectorAll('.item-check:checked').length;
+    const initPercentage = Math.round((initChecked / totalQuestions) * 100);
+    progressBar.style.width = `${initPercentage}%`;
+    progressText.innerText = `${initPercentage}% Concluído`;
+
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
         const checkedCount = document.querySelectorAll('.item-check:checked').length;
         const percentage = Math.round((checkedCount / totalQuestions) * 100);
-        
+
         progressBar.style.width = `${percentage}%`;
         progressText.innerText = `${percentage}% Concluído`;
       });
@@ -128,14 +135,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (formInspecao) {
     formInspecao.addEventListener('submit', function(e) {
+      if (!confirm('Tem certeza que deseja salvar o relatório?')) {
+        e.preventDefault();
+        return;
+      }
+
       let formValido = true;
-      const inputsValidar = ['p1', 'p2']; // Mapeia os names dos rádios
+      const inputsValidar = questionNames;
 
       inputsValidar.forEach(name => {
         const queryRadios = document.getElementsByName(name);
         const blocoPergunta = document.getElementById(`block-${name}`);
         
-        // Se você não colocou os IDs block-p1 e block-p2 no HTML, ele tenta achar por classe de fallback
+        // Se você não colocou os IDs block-pX no HTML, ele tenta achar por classe de fallback
         const bloco = blocoPergunta || queryRadios[0]?.closest('.question-block');
         if (!bloco) return;
 
@@ -149,27 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
           }
         }
-        // Dentro do if (formValido) no main.js
-        if (formValido) {
-          // Evita cliques múltiplos criando uma "película" invisível na tela
-          const overlay = document.createElement('div');
-          overlay.style.position = 'fixed';
-          overlay.style.top = '0';
-          overlay.style.left = '0';
-          overlay.style.width = '100vw';
-          overlay.style.height = '100vh';
-          overlay.style.zIndex = '9999';
-          overlay.style.cursor = 'not-allowed';
-          document.body.appendChild(overlay);
-          // Ativa o loading que você já tem...
-        }
 
         if (!respondido) {
           formValido = false;
-          // Exibe o texto do erro (se existir no seu HTML)
           if (alertaErro) showElement(alertaErro);
-          
-          // Feedback visual na borda usando os tokens do Tailwind v4
           bloco.classList.remove('border-slate-100');
           bloco.classList.add('border-rose-300', 'ring-1', 'ring-rose-100');
         } else {
@@ -179,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Se travar a validação, cancela o envio e rola até o primeiro erro
       if (!formValido) {
         e.preventDefault();
         const primeiroErro = document.querySelector('.error-message:not(.hidden)');
@@ -190,6 +184,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
+
+      // Evita cliques múltiplos criando uma "película" invisível na tela
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.zIndex = '9999';
+      overlay.style.cursor = 'not-allowed';
+      document.body.appendChild(overlay);
 
       // --- ATIVA O ESTADO DE LOADING (Se tudo estiver OK) ---
       // Impede envios múltiplos se o usuário clicar duas vezes enquanto sobe fotos pesadas

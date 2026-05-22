@@ -21,7 +21,7 @@
         <h1 class="text-xl sm:text-2xl font-bold text-slate-800">Cadastro</h1>
       </div>
 
-      <form action="./dashboard.php" class="space-y-4 sm:space-y-5" autocomplete="off">
+      <form action="../backend/register.php" method="POST" class="space-y-4 sm:space-y-5" autocomplete="off">
         
         <div>
           <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nome e Sobrenome</label>
@@ -31,6 +31,7 @@
             </span>
             <input 
               type="text" 
+              name="nome"
               placeholder="Nome Sobrenome" 
               required 
               autocorrect="off"
@@ -48,6 +49,7 @@
             </span>
             <input 
               type="email" 
+              name="email"
               placeholder="usuario@empresa.com" 
               required 
               autocorrect="off"
@@ -66,6 +68,7 @@
             </span>
             <input 
               type="password" 
+              name="senha"
               placeholder="••••••••" 
               required 
               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
@@ -81,6 +84,7 @@
             </span>
             <input 
               type="password" 
+              name="senha_confirm"
               placeholder="••••••••" 
               required 
               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"

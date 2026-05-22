@@ -21,25 +21,8 @@
         <h1 class="text-xl sm:text-2xl font-bold text-slate-800">Login</h1>
       </div>
 
-      <form action="./dashboard.php" class="space-y-4 sm:space-y-5" autocomplete="off">
+      <form action="../backend/login.php" method="POST" class="space-y-4 sm:space-y-5" autocomplete="off">
         
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nome e Sobrenome</label>
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-              <i class="bi bi-person"></i>
-            </span>
-            <input 
-              type="text" 
-              placeholder="Nome Sobrenome" 
-              required 
-              autocorrect="off"
-              autocapitalize="words"
-              class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
-            />
-          </div>
-        </div>
-
         <div>
           <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">E-mail corporativo</label>
           <div class="relative">
@@ -48,6 +31,7 @@
             </span>
             <input 
               type="email" 
+              name="email"
               placeholder="usuario@empresa.com" 
               required 
               autocorrect="off"
@@ -66,6 +50,7 @@
             </span>
             <input 
               type="password" 
+              name="senha"
               placeholder="••••••••" 
               required 
               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
