@@ -6,11 +6,48 @@
 git clone https://github.com/BarceloDev/check-pgr
 ```
 
-## 2. Após terminar de editar:
+# Fluxo Básico GitHub
+
+## 2. Atualizar o projeto antes de começar
+
+```bash
+git pull origin main
+```
+
+---
+
+## 3. Verificar alterações
 
 ```bash
 git status
+```
+
+---
+
+## 4. Adicionar arquivos alterados
+
+```bash
 git add .
-git commit -m "SEU TEXTO DE COMMIT"
-git push
+```
+
+---
+
+## 5. Criar commit
+
+```bash
+git commit -m "Descrição das alterações"
+```
+
+Exemplo:
+
+```bash
+git commit -m "Criando tela de login"
+```
+
+---
+
+## 6. Enviar alterações para o GitHub
+
+```bash
+git push origin main
 ```
