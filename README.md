@@ -1,5 +1,7 @@
 # CHECK PGR
 
+# Para colaboradores do projeto
+
 ## 1.Clone o repositório:
 
 ```bash
