@@ -1,9 +1,5 @@
 <?php
 require_once __DIR__ . '/../backend/auth.php';
-checkAuth();
-?>
-<?php
-require_once __DIR__ . '/../backend/auth.php';
 require_once __DIR__ . '/../backend/conexao.php';
 checkAuth();
 

@@ -41,16 +41,6 @@ $conn->exec("CREATE TABLE IF NOT EXISTS checklist_items (
     KEY checklist_id (checklist_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
-$conn->exec("CREATE TABLE IF NOT EXISTS checklist_photos (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    checklist_item_id INT(11) NOT NULL,
-    caminho VARCHAR(255) DEFAULT NULL,
-    conteudo LONGBLOB DEFAULT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY checklist_item_id (checklist_item_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
-
 try {
     $conn->beginTransaction();
 
@@ -61,12 +51,10 @@ try {
     $reportId = (int) $conn->lastInsertId();
 
     $insertItemStmt = $conn->prepare('INSERT INTO checklist_items (checklist_id, campo, resposta, observacao) VALUES (:checklist_id, :campo, :resposta, :observacao)');
-    $insertPhotoStmt = $conn->prepare('INSERT INTO checklist_photos (checklist_item_id, caminho, conteudo) VALUES (:item_id, :caminho, :conteudo)');
 
     for ($i = 1; $i <= 10; $i++) {
         $campo = 'p' . $i;
         $obsCampo = 'obs_p' . $i;
-        $fotoCampo = 'foto_p' . $i;
         $resposta = $_POST[$campo] ?? 'nao-selecionado';
         $observacao = trim($_POST[$obsCampo] ?? '');
 
@@ -76,76 +64,6 @@ try {
         $insertItemStmt->bindValue(':observacao', $observacao, PDO::PARAM_STR);
         $insertItemStmt->execute();
         $itemId = (int) $conn->lastInsertId();
-
-        if (!empty($_FILES[$fotoCampo]['name'])) {
-            $uploadDir = __DIR__ . '/../uploads/' . $setor;
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-
-            $file = $_FILES[$fotoCampo];
-            if ($file['error'] === UPLOAD_ERR_OK) {
-                $originalName = pathinfo($file['name'], PATHINFO_FILENAME);
-                $nomeSeguro = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $originalName);
-                $nomeArquivoWebp = sprintf('%s_%s_%s_%s.webp', $setor, $usuarioId, $campo, time());
-                $destinoWebp = $uploadDir . '/' . $nomeArquivoWebp;
-                $imageData = file_get_contents($file['tmp_name']);
-
-                $savedPath = null;
-                $savedBinary = null;
-
-                // Try GD first
-                if (function_exists('imagecreatefromstring') && function_exists('imagewebp')) {
-                    $image = @imagecreatefromstring($imageData);
-                    if ($image !== false) {
-                        imagepalettetotruecolor($image);
-                        imagealphablending($image, true);
-                        imagesavealpha($image, true);
-                        if (imagewebp($image, $destinoWebp, 80)) {
-                            imagedestroy($image);
-                            $savedPath = 'uploads/' . $setor . '/' . $nomeArquivoWebp;
-                            $savedBinary = file_get_contents($destinoWebp);
-                        } else {
-                            imagedestroy($image);
-                        }
-                    }
-                }
-
-                // If GD failed, try Imagick
-                if ($savedBinary === null && class_exists('Imagick')) {
-                    try {
-                        $im = new Imagick($file['tmp_name']);
-                        $im->setImageFormat('webp');
-                        $im->setImageCompressionQuality(80);
-                        $im->writeImage($destinoWebp);
-                        $savedPath = 'uploads/' . $setor . '/' . $nomeArquivoWebp;
-                        $savedBinary = file_get_contents($destinoWebp);
-                        $im->clear();
-                        $im->destroy();
-                    } catch (Exception $e) {
-                        // ignore and fallback
-                    }
-                }
-
-                // Final fallback: move original file and store its bytes
-                if ($savedBinary === null) {
-                    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-                    $nomeArquivo = sprintf('%s_%s_%s_%s.%s', $setor, $usuarioId, $campo, time(), $ext);
-                    $destino = $uploadDir . '/' . $nomeArquivo;
-                    if (move_uploaded_file($file['tmp_name'], $destino)) {
-                        $savedPath = 'uploads/' . $setor . '/' . $nomeArquivo;
-                        $savedBinary = file_get_contents($destino);
-                    }
-                }
-
-                if ($savedPath !== null || $savedBinary !== null) {
-                    $insertPhotoStmt->bindValue(':item_id', $itemId, PDO::PARAM_INT);
-                    $insertPhotoStmt->bindValue(':caminho', $savedPath, PDO::PARAM_STR);
-                    $insertPhotoStmt->bindValue(':conteudo', $savedBinary, PDO::PARAM_LOB);
-                    $insertPhotoStmt->execute();
-                }
-            }
-        }
     }
 
     $conn->commit();

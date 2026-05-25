@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <form action="../backend/save_checklist.php" method="POST" enctype="multipart/form-data" id="form-inspecao" class="space-y-6">
+        <form action="../backend/save_checklist.php" method="POST" id="form-inspecao" class="space-y-6">
           <input type="hidden" name="setor" value="nr_10" />
           <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4 question-block" id="block-p1">
             <div class="flex items-start gap-3">
@@ -63,27 +63,6 @@
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p1" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p1" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -108,27 +87,6 @@
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p2" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
               </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p2" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -151,27 +109,6 @@
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p3" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p3" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -196,27 +133,6 @@
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p4" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
               </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p4" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -239,27 +155,6 @@
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p5" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p5" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -284,27 +179,6 @@
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p6" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
               </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p6" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -327,27 +201,6 @@
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p7" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p7" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -372,27 +225,6 @@
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p8" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
               </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p8" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -416,27 +248,6 @@
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p9" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
               </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p9" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -459,27 +270,6 @@
               <div>
                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Observações / Não Conformidades</label>
                 <textarea name="obs_p10" rows="2" placeholder="Descreva detalhes caso encontre irregularidades..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"></textarea>
-              </div>
-              <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Evidência Fotográfica</label>
-                <div class="relative flex flex-col items-center justify-center w-full min-h-[110px] bg-slate-50 border border-dashed border-slate-200 rounded-xl p-4 hover:bg-slate-100/70 transition-colors text-center group upload-wrapper">
-                  <input type="file" name="foto_p10" accept="image/*" capture="environment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer image-input" />
-                  <div class="space-y-1 group-upload-placeholder">
-                    <div class="text-slate-400 group-hover:text-blue-500 transition-colors text-xl"><i class="bi bi-camera"></i></div>
-                    <p class="text-xs font-medium text-slate-600">Clique para tirar foto ou fazer upload</p>
-                    <p class="text-[10px] text-slate-400">PNG, JPG ou JPEG (Máx. 5MB)</p>
-                  </div>
-                  <div class="hidden w-full flex items-center justify-between gap-3 bg-white border border-slate-100 rounded-lg p-2 preview-wrapper">
-                    <div class="flex items-center gap-3">
-                      <img src="" class="w-10 h-10 object-cover rounded-md border border-slate-100 img-preview-element" />
-                      <div class="text-left">
-                        <p class="text-xs font-medium text-slate-700 truncate max-w-[180px] img-name-element">nome_da_foto.jpg</p>
-                        <p class="text-[10px] text-emerald-600 flex items-center gap-0.5"><i class="bi bi-check"></i> Carregada</p>
-                      </div>
-                    </div>
-                    <button type="button" class="w-7 h-7 bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-md flex items-center justify-center text-xs transition-colors btn-remove-img relative z-50 pointer-events-auto"><i class="bi bi-trash"></i></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

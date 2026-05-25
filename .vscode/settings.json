@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^cd 'C:\\\\xampp\\\\htdocs\\\\check-pgr'; php -l 'backend\\\\conexao\\.php'; php -l 'backend\\\\auth\\.php'; php -l 'backend\\\\login\\.php'; php -l 'backend\\\\register\\.php'; php -l 'backend\\\\save_checklist\\.php'; php -l 'pages\\\\cadastro\\.php'; php -l 'pages\\\\dashboard\\.php'; php -l 'pages\\\\relatorio\\.php'; php -l 'pages\\\\inspecaonr-6\\.php'; php -l 'pages\\\\inspecaonr-10\\.php'; php -l 'pages\\\\inspecaonr-23\\.php'$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}

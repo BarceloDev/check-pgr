@@ -80,9 +80,6 @@ if ($report) {
     $itemsByCampo[$it['campo']] = $it;
   }
 
-  // Prepare photo statement
-  $stmtPhotos = $conn->prepare('SELECT caminho FROM checklist_photos WHERE checklist_item_id = :item_id ORDER BY id ASC');
-
   foreach ($labels as $campo => $pergunta) {
     $item = $itemsByCampo[$campo] ?? null;
     $valor = $item['resposta'] ?? 'nao-selecionado';
@@ -96,22 +93,12 @@ if ($report) {
     $summary['total']++;
 
     $observacao = $item['observacao'] ?? '';
-    $fotoPath = null;
-    if ($item) {
-      $stmtPhotos->bindValue(':item_id', $item['id'], PDO::PARAM_INT);
-      $stmtPhotos->execute();
-      $photo = $stmtPhotos->fetch(PDO::FETCH_ASSOC);
-      if ($photo) {
-        $fotoPath = $photo['caminho'];
-      }
-    }
 
     $reportData['itens'][] = [
       'campo' => $campo,
       'pergunta' => $pergunta,
       'valor' => $valor,
       'observacao' => trim($observacao),
-      'foto' => $fotoPath,
     ];
   }
 
@@ -248,12 +235,6 @@ if ($report) {
                       <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Observação</p>
                       <p><?php echo $item['observacao'] !== '' ? htmlspecialchars($item['observacao'], ENT_QUOTES, 'UTF-8') : '<span class="text-slate-400">Nenhuma observação registrada</span>'; ?></p>
                     </div>
-                    <?php if ($item['foto']): ?>
-                      <div class="mt-4">
-                        <p class="text-[10px] uppercase tracking-wider text-slate-400 mb-2">Evidência fotográfica</p>
-                        <img src="../<?php echo htmlspecialchars($item['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto item <?php echo htmlspecialchars(substr($item['campo'], 1), ENT_QUOTES, 'UTF-8'); ?>" class="w-full max-w-[320px] h-auto rounded-xl border border-slate-200" />
-                      </div>
-                    <?php endif; ?>
                   </div>
                 <?php endif; ?>
               <?php endforeach; ?>

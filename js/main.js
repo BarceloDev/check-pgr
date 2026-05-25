@@ -1,24 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-  
+document.addEventListener("DOMContentLoaded", () => {
+  function showElement(element) {
+    element.classList.remove("hidden");
+  }
+
+  function hideElement(element) {
+    element.classList.add("hidden");
+  }
+
   // ==========================================
   // 1. CONTROLE DE PROGRESSO
   // ==========================================
-  const radios = document.querySelectorAll('.item-check');
-  const progressBar = document.getElementById('progress-bar');
-  const progressText = document.getElementById('progress-text');
-  const questionNames = Array.from(new Set(Array.from(radios).map(radio => radio.name).filter(Boolean)));
+  const radios = document.querySelectorAll(".item-check");
+  const progressBar = document.getElementById("progress-bar");
+  const progressText = document.getElementById("progress-text");
+  const questionNames = Array.from(
+    new Set(
+      Array.from(radios)
+        .map((radio) => radio.name)
+        .filter(Boolean),
+    ),
+  );
   const totalQuestions = questionNames.length;
 
   if (radios.length > 0 && progressBar && progressText && totalQuestions > 0) {
     // Inicializa o progresso com base no que já estiver marcado
-    const initChecked = document.querySelectorAll('.item-check:checked').length;
+    const initChecked = document.querySelectorAll(".item-check:checked").length;
     const initPercentage = Math.round((initChecked / totalQuestions) * 100);
     progressBar.style.width = `${initPercentage}%`;
     progressText.innerText = `${initPercentage}% Concluído`;
 
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        const checkedCount = document.querySelectorAll('.item-check:checked').length;
+    radios.forEach((radio) => {
+      radio.addEventListener("change", () => {
+        const checkedCount = document.querySelectorAll(
+          ".item-check:checked",
+        ).length;
         const percentage = Math.round((checkedCount / totalQuestions) * 100);
 
         progressBar.style.width = `${percentage}%`;
@@ -29,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // REFINAMENTO DE UX: FOCO AUTOMÁTICO EM NÃO CONFORMIDADES
   // ==========================================
-  document.querySelectorAll('.item-check').forEach(radio => {
-    radio.addEventListener('change', function() {
+  document.querySelectorAll(".item-check").forEach((radio) => {
+    radio.addEventListener("change", function () {
       // Se o usuário marcou "Não Conforme"
-      if (this.value === 'nao-conforme') {
+      if (this.value === "nao-conforme") {
         // Encontra o bloco da pergunta onde esse rádio está
-        const bloco = this.closest('.question-block');
+        const bloco = this.closest(".question-block");
         if (bloco) {
-          const textarea = bloco.querySelector('textarea');
+          const textarea = bloco.querySelector("textarea");
           if (textarea) {
             // Dá um pequeno delay para a transição visual do rádio acontecer primeiro
             setTimeout(() => {
@@ -49,93 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 2. CONTROLE DE PREVIEW E EXCLUSÃO (SELEÇÃO DIRETA)
-  // ==========================================
-  const imageInputs = document.querySelectorAll('.image-input');
-
-  const hideElement = element => {
-    if (!element) return;
-    element.style.display = 'none';
-    element.classList.add('hidden');
-  };
-
-  const showElement = element => {
-    if (!element) return;
-    element.style.display = '';
-    element.classList.remove('hidden');
-  };
-
-  imageInputs.forEach(input => {
-    input.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      const uploadWrapper = this.closest('.upload-wrapper') || this.parentElement;
-      const containerBox = uploadWrapper.closest('.relative') || uploadWrapper.parentElement;
-      const previewWrapper = containerBox.querySelector('.preview-wrapper, .group-upload-preview');
-      const placeholderWrapper = containerBox.querySelector('.upload-wrapper, .group-upload-placeholder');
-      const previewImg = containerBox.querySelector('.img-preview-element');
-      const previewName = containerBox.querySelector('.img-name-element');
-
-      if (!file || !previewWrapper || !previewImg || !previewName) {
-        return;
-      }
-
-      previewName.innerText = file.name;
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        previewImg.src = event.target.result;
-        hideElement(placeholderWrapper);
-        showElement(previewWrapper);
-        input.style.pointerEvents = 'none';
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-
-  // Evento disparado ao clicar na lixeira
-  const removeButtons = document.querySelectorAll('.btn-remove-img');
-
-  removeButtons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      const previewWrapper = this.closest('.preview-wrapper, .group-upload-preview');
-      const containerBox = previewWrapper ? previewWrapper.parentElement : this.parentElement.parentElement;
-      const uploadWrapper = containerBox.querySelector('.upload-wrapper, .group-upload-placeholder');
-      const fileInput = containerBox.querySelector('.image-input');
-      const previewImg = containerBox.querySelector('.img-preview-element');
-      const previewName = containerBox.querySelector('.img-name-element');
-
-      if (fileInput) {
-        fileInput.value = '';
-        fileInput.style.pointerEvents = 'auto';
-      }
-
-      if (previewImg) {
-        previewImg.src = '';
-      }
-
-      if (previewName) {
-        previewName.innerText = '';
-      }
-
-      showElement(uploadWrapper);
-      hideElement(previewWrapper);
-    });
-  });
-
-  // ==========================================
   // 3. VALIDAÇÃO INDEPENDENTE E LOADING STATE
   // ==========================================
-  const formInspecao = document.getElementById('form-inspecao');
-  const btnSubmit = document.getElementById('btn-submit');
-  const btnText = document.getElementById('btn-text');
-  const btnSpinner = document.getElementById('btn-spinner');
-  const btnCancelar = document.getElementById('btn-cancelar');
+  const formInspecao = document.getElementById("form-inspecao");
+  const btnSubmit = document.getElementById("btn-submit");
+  const btnText = document.getElementById("btn-text");
+  const btnSpinner = document.getElementById("btn-spinner");
+  const btnCancelar = document.getElementById("btn-cancelar");
 
   if (formInspecao) {
-    formInspecao.addEventListener('submit', function(e) {
-      if (!confirm('Tem certeza que deseja salvar o relatório?')) {
+    formInspecao.addEventListener("submit", function (e) {
+      if (!confirm("Tem certeza que deseja salvar o relatório?")) {
         e.preventDefault();
         return;
       }
@@ -143,15 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
       let formValido = true;
       const inputsValidar = questionNames;
 
-      inputsValidar.forEach(name => {
+      inputsValidar.forEach((name) => {
         const queryRadios = document.getElementsByName(name);
         const blocoPergunta = document.getElementById(`block-${name}`);
-        
+
         // Se você não colocou os IDs block-pX no HTML, ele tenta achar por classe de fallback
-        const bloco = blocoPergunta || queryRadios[0]?.closest('.question-block');
+        const bloco =
+          blocoPergunta || queryRadios[0]?.closest(".question-block");
         if (!bloco) return;
 
-        const alertaErro = bloco.querySelector('.error-message');
+        const alertaErro = bloco.querySelector(".error-message");
 
         // Verifica se o rádio foi respondido
         let respondido = false;
@@ -165,48 +105,52 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!respondido) {
           formValido = false;
           if (alertaErro) showElement(alertaErro);
-          bloco.classList.remove('border-slate-100');
-          bloco.classList.add('border-rose-300', 'ring-1', 'ring-rose-100');
+          bloco.classList.remove("border-slate-100");
+          bloco.classList.add("border-rose-300", "ring-1", "ring-rose-100");
         } else {
           if (alertaErro) hideElement(alertaErro);
-          bloco.classList.remove('border-rose-300', 'ring-1', 'ring-rose-100');
-          bloco.classList.add('border-slate-100');
+          bloco.classList.remove("border-rose-300", "ring-1", "ring-rose-100");
+          bloco.classList.add("border-slate-100");
         }
       });
 
       if (!formValido) {
         e.preventDefault();
-        const primeiroErro = document.querySelector('.error-message:not(.hidden)');
-        const alvoScroll = primeiroErro ? primeiroErro.closest('.question-block') : document.querySelector('.border-rose-300');
-        
+        const primeiroErro = document.querySelector(
+          ".error-message:not(.hidden)",
+        );
+        const alvoScroll = primeiroErro
+          ? primeiroErro.closest(".question-block")
+          : document.querySelector(".border-rose-300");
+
         if (alvoScroll) {
-          alvoScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          alvoScroll.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         return;
       }
 
       // Evita cliques múltiplos criando uma "película" invisível na tela
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100vw';
-      overlay.style.height = '100vh';
-      overlay.style.zIndex = '9999';
-      overlay.style.cursor = 'not-allowed';
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.top = "0";
+      overlay.style.left = "0";
+      overlay.style.width = "100vw";
+      overlay.style.height = "100vh";
+      overlay.style.zIndex = "9999";
+      overlay.style.cursor = "not-allowed";
       document.body.appendChild(overlay);
 
       // --- ATIVA O ESTADO DE LOADING (Se tudo estiver OK) ---
       // Impede envios múltiplos se o usuário clicar duas vezes enquanto sobe fotos pesadas
       if (btnSubmit) {
         btnSubmit.disabled = true;
-        btnSubmit.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-        btnSubmit.classList.add('bg-blue-500', 'cursor-not-allowed');
+        btnSubmit.classList.remove("bg-blue-600", "hover:bg-blue-700");
+        btnSubmit.classList.add("bg-blue-500", "cursor-not-allowed");
       }
-      
+
       if (btnCancelar) {
-        btnCancelar.style.pointerEvents = 'none';
-        btnCancelar.classList.add('opacity-50');
+        btnCancelar.style.pointerEvents = "none";
+        btnCancelar.classList.add("opacity-50");
       }
 
       if (btnText) btnText.innerText = "Processando e Enviando...";
@@ -214,19 +158,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Remove a borda vermelha de erro assim que o usuário seleciona uma opção
-    document.querySelectorAll('.item-check').forEach(radio => {
-      radio.addEventListener('change', function() {
-        const name = this.getAttribute('name');
-        const blocoPergunta = document.getElementById(`block-${name}`) || this.closest('.question-block');
+    document.querySelectorAll(".item-check").forEach((radio) => {
+      radio.addEventListener("change", function () {
+        const name = this.getAttribute("name");
+        const blocoPergunta =
+          document.getElementById(`block-${name}`) ||
+          this.closest(".question-block");
         if (!blocoPergunta) return;
 
-        const alertaErro = blocoPergunta.querySelector('.error-message');
+        const alertaErro = blocoPergunta.querySelector(".error-message");
 
         if (alertaErro) hideElement(alertaErro);
-        blocoPergunta.classList.remove('border-rose-300', 'ring-1', 'ring-rose-100');
-        blocoPergunta.classList.add('border-slate-100');
+        blocoPergunta.classList.remove(
+          "border-rose-300",
+          "ring-1",
+          "ring-rose-100",
+        );
+        blocoPergunta.classList.add("border-slate-100");
       });
     });
   }
-
 });

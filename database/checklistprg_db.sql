@@ -59,18 +59,6 @@ CREATE TABLE IF NOT EXISTS `checklist_items` (
   CONSTRAINT `fk_items_checklist` FOREIGN KEY (`checklist_id`) REFERENCES `checklists` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Table: checklist_photos (multiple photos per item)
-CREATE TABLE IF NOT EXISTS `checklist_photos` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `checklist_item_id` INT(11) NOT NULL,
-  `caminho` VARCHAR(255) DEFAULT NULL,
-  `conteudo` LONGBLOB DEFAULT NULL,
-  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `checklist_item_id` (`checklist_item_id`),
-  CONSTRAINT `fk_photos_item` FOREIGN KEY (`checklist_item_id`) REFERENCES `checklist_items` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
