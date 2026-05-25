@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <form action="../backend/save_checklist.php" method="POST" enctype="multipart/form-data" id="form-inspecao" class="space-y-6" onsubmit="return confirm('Tem certeza que deseja salvar o relatório?');">
+        <form action="../backend/save_checklist.php" method="POST" enctype="multipart/form-data" id="form-inspecao" class="space-y-6">
           <input type="hidden" name="setor" value="nr_23" />
           <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4 question-block" id="block-p1">
             <div class="flex items-start gap-3">
@@ -484,8 +484,14 @@
             </div>
           </div>
           <div class="flex gap-4 pt-2">
-            <a href="./dashboard.php" class="w-1/3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-500 font-medium rounded-xl py-3 text-sm transition-colors text-center shadow-xs">Cancelar</a>
-            <button type="submit" class="w-2/3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl py-3 text-sm transition-colors shadow-sm shadow-blue-100 cursor-pointer">Salvar e Gerar Relatório</button>
+            <a href="./dashboard.php" id="btn-cancelar" class="w-1/3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-500 font-medium rounded-xl py-3 text-sm transition-colors text-center shadow-xs">Cancelar</a>
+            <button type="submit" id="btn-submit" class="w-2/3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl py-3 text-sm transition-colors shadow-sm shadow-blue-100 cursor-pointer flex items-center justify-center gap-2">
+              <span id="btn-text">Salvar e Gerar Relatório</span>
+              <svg id="btn-spinner" class="animate-spin h-4 w-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
           </div>
 
         </form>

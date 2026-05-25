@@ -21,7 +21,7 @@
         <h1 class="text-xl sm:text-2xl font-bold text-slate-800">Login</h1>
       </div>
 
-      <form action="../backend/login.php" method="POST" class="space-y-4 sm:space-y-5" autocomplete="off">
+      <form action="./backend/login.php" method="POST" class="space-y-4 sm:space-y-5" autocomplete="off">
         
         <div>
           <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">E-mail corporativo</label>
@@ -67,7 +67,7 @@
       </form>
 
       <div class="text-center mt-6">
-        <a href="./cadastro.php" class="inline-block text-xs text-blue-600 hover:underline font-semibold py-1 -webkit-tap-highlight-color-transparent">
+        <a href="./pages/cadastro.php" class="inline-block text-xs text-blue-600 hover:underline font-semibold py-1 -webkit-tap-highlight-color-transparent">
           Não tem uma conta? Clique aqui
         </a>
       </div>

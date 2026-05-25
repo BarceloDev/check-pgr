@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <form action="../backend/save_checklist.php" method="POST" enctype="multipart/form-data" id="form-inspecao" class="space-y-4 md:space-y-6" novalidate autocomplete="off" onsubmit="return confirm('Tem certeza que deseja salvar o relatório?');">
+        <form action="../backend/save_checklist.php" method="POST" enctype="multipart/form-data" id="form-inspecao" class="space-y-4 md:space-y-6" novalidate autocomplete="off">
           <input type="hidden" name="setor" value="nr_06" />
           <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 shadow-xs space-y-4 question-block transition-all duration-200" id="block-p1">
             <div class="flex items-start gap-2.5">
